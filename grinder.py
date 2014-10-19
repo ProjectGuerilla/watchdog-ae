@@ -25,11 +25,6 @@ from glob import glob
 
 from pprint import pprint
 
-# from pprint import pprint
-# import sys
-# import errno
-# from pprint import pformat
-
 
 def is_it_ok_to_render_project(full_path_to_ae_project_file): #tested OK
     '''
@@ -66,8 +61,6 @@ def error_report(error_line):
         else:
             return "ERROR: Undefined Error (Check Logs)"
 
-
-
 def error_report(error_line):
     if 'mov' in error_line and 'Unable' in error_line:
         return "ERROR: Movie Render Error - This is an expected error and should be ignored" # OK to ignore
@@ -76,10 +69,8 @@ def error_report(error_line):
     else:
         return "ERROR: Undefined Error (Please Check Log For More Info)\n"+error_line
 
-
 def success_report(success_line):
     return "SUCCESS: Successful render"
-
 
 def deal_with_possible_zeros(error_log_output_to_info):
     datum = error_log_output_to_info.split('Output To: ')
@@ -142,7 +133,6 @@ def get_grinder_error(phile, zero_only = False):
 
         # return "Dropped to bottom - ERROR: Early Death Of Engine (Check zero frames)"
 
-
 class RenderInstance(multiprocessing.Process):
     def __init__(self, task_queue, result_queue):
         multiprocessing.Process.__init__(self)
@@ -164,8 +154,6 @@ class RenderInstance(multiprocessing.Process):
             self.task_queue.task_done()
             self.result_queue.put(answer)
         return
-
-
 
 # the thing that does the work and accepts arguments...
 class Task(object):
@@ -194,7 +182,6 @@ class Task(object):
     def __str__(self):
         return '%s ' % (self.project_path)
 
-
 class WaitTask(object):
     'A task that waits 10 mintues and then returns "wait over"'
     def __init__(self, ):
@@ -208,7 +195,6 @@ class WaitTask(object):
     def __str__(self):
         return 'waiting 1 minute'
 
-
 class AE_Render_Manager(object):
     '''
     This is primarily an object so that all the information that needs to be passed between routines can be encapsulated'
@@ -218,7 +204,6 @@ class AE_Render_Manager(object):
 
 
     '''
-
     def __init__(self, watchfolder_path, number_of_engines, path_to_aerender, log_file_name_prefix,
                  machine_name, log_folder_name ):
         self.number_of_workers = number_of_engines
@@ -270,7 +255,6 @@ class AE_Render_Manager(object):
                 # for l in [ [x]*self.number_of_workers for x in ok_aep_file_paths]:
                 #     self.waiting_jobs_list.extend(l)
 
-
     def _create_queues(self): # tested in prior code versions
         '''
         set up the communication queues (job queue and message queue)
@@ -278,7 +262,6 @@ class AE_Render_Manager(object):
         # Establish communication queues
         self.task_queue = multiprocessing.JoinableQueue()
         self.result_queue = multiprocessing.Queue()
-
 
     def _create_workers(self): # tested in prior code versions
         '''
@@ -291,7 +274,6 @@ class AE_Render_Manager(object):
         for worker in self.worker_instances_list:
             worker.start()
 
-
     def _prime_queue(self): # tested
         '''
         Fill the queue with tasks (an initialization process). Put one more task that there are workers
@@ -299,7 +281,6 @@ class AE_Render_Manager(object):
         for i in range(self.number_of_workers + 1):
             sleep(2) # pause briefly to let ae NOT over-run itself with simultaneous requests to same file
             self._push_job_to_queue()
-
 
     def _job_queued_data_tracking(self, aep_file_path):
         '''
@@ -506,21 +487,14 @@ if __name__ == '__main__':
     # get name of machine procedurally
     from socket import gethostname
     machine_name = gethostname().split('.')[0]
-    # print machine_name
-    # machine_name = 'KingKong'
     path_to_aerender = '/Applications/Adobe After Effects CS6/aerender'
-    # path_to_aerender = '\Program Files\Adobe\Adobe After Effects CS5\Support Files\aerender.exe)
     log_file_name_prefix = 'Grinder_Log_' # did not work ==> os.path.join('render_test.aep Logs', 'Grinder_Log_')
     log_folder_name = 'Grinder_Logs'
-
     # set up temporary command line arguments
     import optparse
     option_parser = optparse.OptionParser(version='Grinder version {}'.format(__version__))
-
     option_parser.add_option('-w', '--watchfolder', help='Specify The Path To The Watch Folder',
                              dest='watchfolder_path', action='store')
-    # option_parser.add_option('-m', '--machinename', dest='machine_name', action='store',
-    #                          help='What is the name of this machine - will be shown in log file names')
     option_parser.add_option('-n', dest='number_of_engines', action='store', type='int',
                              help='how many aerender instances should be started by this program')
     (opts, args) = option_parser.parse_args()
