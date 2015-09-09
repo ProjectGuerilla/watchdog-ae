@@ -1,7 +1,7 @@
 grinder
 =======
 
-An After Effects "aerenader" front end that supports watch folder style rendering for primarily frame based projects
+An After Effects "aerender" front end that supports watch folder style rendering for primarily frame based projects
 
 This version of the script was used successfully in production across 8 workstations, each with 3-5 instances of aerender running. This was in full production for AE CC in 2013.
 
@@ -13,10 +13,11 @@ For the macs in production we have developed a script called grinder that enable
 
 USE:
 
-1. Open the Terminal application 2. type:
+1. Open the Terminal application and type:
 
-'grinder -n 2 -w path/to/the/watchfolder'
-
+```
+grinder -n 2 -w path/to/the/watchfolder
+```
 
 the number 2 can be replaced with other numbers and represents the number of aerender insqances that will be started on this machine. It is safe to use n = 1/2 of the number of cores on your machine if you will ONLY be rendering.
 
