@@ -1,6 +1,21 @@
 #!/opt/local/bin/python
 
-__author__ = 'tom'
+"""
+This code is copyright 2012 Tom David Stratton
+It is available under dual license:
+For anyone who want to use it, it is available under GPLv3 (http://www.gnu.org/licenses/gpl.html) but you must adhere to the 
+terms of the license and release all derivative software under the same license.
+
+For anyone who wants to close source or commercialize this software please contact me to discuss appropriate licensing fees
+or revenue sharing.
+
+This software is provided without warranty, it doesn nothing except delete all your data and install viruses in your render farm.
+After that, your workers gerenally contract fatal diseases. You have been warned so don't come crying to me if it breaks. Fix
+it yourself and send me a pull request.
+
+Clearly, you have to change the WATCHFOLDER path on line 24 - and no, if you can't figure that out I'm not going to help you.
+"""
+__author__ = 'tom@tomstatton. net'
 
 # todo - make sure final program is written in a try/except/finally block to clean up the mess if a process  never returns
 # todo - if user cancel ask it they want to kill on all machines.. then write stop all renders file
