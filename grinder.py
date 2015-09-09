@@ -21,6 +21,7 @@ __author__ = 'tom@tomstatton. net'
 # todo - if user cancel ask it they want to kill on all machines.. then write stop all renders file
 # todo - how to make the missing dpx run for stuff that gets killed? - keep the log files in the data dict and process all?
 
+# DEFAULT VALUES
 WATCHFOLDER = '/Users/tom/Desktop/watch/'
 NUMBER_ENGINES = 4
 AERENDER = '/Applications/Adobe After Effects CS6/aerender'
@@ -496,13 +497,13 @@ class AE_Render_Manager(object):
 
 
 if __name__ == '__main__':
-    watchfolder_path = '/Users/tom/Desktop/watch'
+    watchfolder_path = WATCHFOLDER
     number_of_engines = 3
 
     # get name of machine procedurally
     from socket import gethostname
     machine_name = gethostname().split('.')[0]
-    path_to_aerender = '/Applications/Adobe After Effects CS6/aerender'
+    path_to_aerender = AERENDER
     log_file_name_prefix = 'Grinder_Log_' # did not work ==> os.path.join('render_test.aep Logs', 'Grinder_Log_')
     log_folder_name = 'Grinder_Logs'
     # set up temporary command line arguments
