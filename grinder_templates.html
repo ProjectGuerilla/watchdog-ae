@@ -1,0 +1,113 @@
+'''
+This is a repository for string variable used by grinder to generate html output
+
+This code is copyright 2012 Tom David Stratton
+It is available under dual license:
+For anyone who want to use it, it is available under GPLv3 (http://www.gnu.org/licenses/gpl.html) but you must adhere to the 
+terms of the license and release all derivative software under the same license.
+For anyone who wants to close source or commercialize this software please contact me to discuss appropriate licensing fees
+or revenue sharing.
+This software is provided without warranty, it doesn nothing except delete all your data and install viruses in your render farm.
+After that, your workers gerenally contract fatal diseases. You have been warned so don't come crying to me if it breaks. Fix
+it yourself and send me a pull request.
+'''
+__author__ = 'tom@tomstratton.net'
+from string import Template
+
+header = '''
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Grinder Report</title>
+<style type="text/css">
+.engine_info {
+	margin: 0px;
+	padding: 2px;
+	font-size: 12px;
+	width: 630px;
+	border: thin solid #666;
+}
+.engine_info p:first-child{
+	font-size: 14px;
+	font-weight: bold;
+	margin: 0px;
+}
+
+.engine_info table{
+	border-top-style: none;
+	border-top-width: thin;
+	border-right-width: thin;
+	border-bottom-width: thin;
+	border-left-width: thin;
+	border-right-style: none;
+	border-bottom-style: solid;
+	border-left-style: none;
+	border-top-color: #666;
+	border-right-color: #666;
+	border-bottom-color: #666;
+	border-left-color: #666;
+}
+
+.engine_info ~ .engine_info{
+
+	border-top-style: none;
+	}
+
+.engine_info table tr td {
+	margin: 0px;
+	padding-top: 0px;
+	padding-right: 1px;
+	padding-bottom: 0px;
+	padding-left: 1px;
+}
+.engine_info table {
+	margin-left: 10px;
+	width: 610px;
+	table-layout: fixed;
+}
+.engine_info table tr td {
+	border: thin solid #DDD;
+}
+body {
+	font-family: Consolas, "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", Monaco, "Courier New", monospace;
+}
+</style>
+<meta http-equiv="refresh" content="30">
+<!--  the content is number of seconds between refreshes.. -->
+</head>
+
+<body>
+'''
+
+footer = '''
+</body>
+</html>
+'''
+
+worker_table = Template(
+'''
+<div class="engine_info">
+  <p> Render: $worker</p>
+
+  <table width="610" border="1" cellspacing="2" cellpadding="2">
+    <tr>
+      <td width="239">LAST START: $last_start_time</td>
+      <td width="352">$started_task</td>
+    </tr>
+  </table>
+
+    <table width="610" border="1" cellspacing="2" cellpadding="2">
+    <tr>
+      <td width="107">LAST RESULT:<br>$last_end_time</td>
+      <td width="214">Project File:<br>$last_project</td>
+      <td width="255">$last_message</td>
+    </tr>
+        <tr>
+      <td colspan = "3">Log File: $last_log</td>
+    </tr>
+  </table>
+
+</div>
+'''
+)
