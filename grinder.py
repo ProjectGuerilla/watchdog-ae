@@ -1,4 +1,5 @@
-#!/opt/local/bin/python
+#! /opt/local/bin/python 
+# - if you don't have a valid python version installed at /opt/locl/bin change this line to "#! /usr/bin/python"
 
 """
 This code is copyright 2012 Tom David Stratton
