@@ -1,8 +1,9 @@
-#! /opt/local/bin/python 
-# - if you don't have a valid python version installed at /opt/locl/bin change this line to "#! /usr/bin/python"
+#! /usr/bin/python 
+# - if you don't have a valid python version installed at /opt/local/bin change this line to "#! /opt/local/bin/python"
 
 """
 This code is copyright 2012 Tom David Stratton
+Minor code mods by Johnathan Banta for quick deployment to default OSX installs 2016. Renamed to WatchDog per previous standalone deployments to avoid Social Network confusion issues
 It is available under dual license:
 For anyone who want to use it, it is available under GPLv3 (http://www.gnu.org/licenses/gpl.html) but you must adhere to the 
 terms of the license and release all derivative software under the same license.
@@ -25,7 +26,8 @@ __author__ = 'tom@tomstatton. net'
 # DEFAULT VALUES
 WATCHFOLDER = '/Users/tom/Desktop/watch/'
 NUMBER_ENGINES = 4
-AERENDER = '/Applications/Adobe After Effects CS6/aerender'
+# change the line below to control which version of After Effects you want to use. You can create multiple watchdog Instances by changing the name of the app
+AERENDER = '/Applications/Adobe After Effects CC 2014/aerender'
 STRFTIMEFORLOGS = '_%m%d%y_%H_%M.txt'
 WAIT_TIME = 60 # seconds
 __version__ = '0.7b'
@@ -120,7 +122,7 @@ def deal_with_possible_zeros(error_log_output_to_info):
     os.chdir(curdir)
     return
 
-def get_grinder_error(phile, zero_only = False):
+def get_watchdog_error(phile, zero_only = False):
     with open(phile, 'r') as f:
         lines = f.read().splitlines()
         for i in range(3):
@@ -193,7 +195,7 @@ class Task(object):
                                        log_file_path], stdout=null_out, stderr=null_out)
         error_message = 'Success...'
         if return_code:
-            error_message = get_grinder_error(log_file_path)
+            error_message = get_watchdog_error(log_file_path)
         return (self.project_path, return_code, log_file_path, error_message)
 
     def __str__(self):
@@ -505,11 +507,11 @@ if __name__ == '__main__':
     from socket import gethostname
     machine_name = gethostname().split('.')[0]
     path_to_aerender = AERENDER
-    log_file_name_prefix = 'Grinder_Log_' # did not work ==> os.path.join('render_test.aep Logs', 'Grinder_Log_')
-    log_folder_name = 'Grinder_Logs'
+    log_file_name_prefix = 'WatchDog_Log_' # did not work ==> os.path.join('render_test.aep Logs', 'WatchDog_Log_')
+    log_folder_name = 'WatchDog_Logs'
     # set up temporary command line arguments
     import optparse
-    option_parser = optparse.OptionParser(version='Grinder version {}'.format(__version__))
+    option_parser = optparse.OptionParser(version='WatchDog version {}'.format(__version__))
     option_parser.add_option('-w', '--watchfolder', help='Specify The Path To The Watch Folder',
                              dest='watchfolder_path', action='store')
     option_parser.add_option('-n', dest='number_of_engines', action='store', type='int',
@@ -528,8 +530,8 @@ if __name__ == '__main__':
 
     print
     print '*' * 80
-    print 'Grinder will run for 3 hours and then stop itself during this beta phase... To exit early type Control-C'
-    print '  in the Terminal window. If you stop Grinder while aerender is rendering frames you will have'
+    print 'WatchDog will run for 3 hours and then stop itself during this beta phase... To exit early type Control-C'
+    print '  in the Terminal window. If you stop WatchDog while aerender is rendering frames you will have'
     print '  zero byte frames left behind. If it was processing a movie, the movie will be truncated or corrupt.'
     print 'NOTE - any render with mov files as output is expected to fail for all but one instance!'
     print '*' * 80
@@ -598,7 +600,7 @@ if __name__ == '__main__':
         manager._quit_elegantly()
         print 'Looking For Zero Byte Frames and Deleting Them - this may take a while!'
         for log_file in all_logs:
-            this_error =get_grinder_error(log_file, zero_only=True)
+            this_error =get_watchdog_error(log_file, zero_only=True)
             if this_error:
                 print this_error
         print 'done'
