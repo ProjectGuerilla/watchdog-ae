@@ -113,8 +113,9 @@ def deal_with_possible_zeros(error_log_output_to_info):
         report_to_user = bad_dpx & bad_dpx2
         for file in really_bad_dpx:
             try:
-                os.remove(file)
-                report_to_user.remove(file)
+                ### #TURNING OFF THIS PROCESS DUE  -- OSX misreporting size  deletes good frames         
+				 # os.remove(file)
+               # report_to_user.remove(file)
             except:
                 print 'COULD NOT DELETE {}'.format(file)
         os.chdir(curdir)
