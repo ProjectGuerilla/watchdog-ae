@@ -1,11 +1,36 @@
 WatchDog
 =======
 
-An After Effects "aerender" front end that supports watch folder style rendering for primarily frame based projects
+A Python-based After Effects “aerender” front end that supports watch folder style rendering for primarily frame based projects.
 
-This version of the script was used successfully in production across 8 workstations, each with 3-5 instances of aerender running. This was in full production for AE CC in 2013.
+This version of the script was first used successfully in production across 8 workstations, each with 3-5 instances of aerender running. This was in full production for AE CC in 2013.
 
-More info and some associated tools still to come. If you want more info or to use this, contact me here
+WatchDog can launch several instances of Adobe A!er E"ects on Macintosh (Currently) computer platforms, and act in a manner similar to the internal Watch Folder render queue. It is more stable in that it does not collide several processes while accessing the render control file. It requires fewer resources to run in the background via a simple terminal command, than launching multiple GUI render engines. Watchdog can be launched across a network of machines to a common server, and turn a small number of multi-core machines into a large render resource.
+
+History
+=======
+
+WatchDog was first developed in 2013 to handle the rendering needs for a small VFX team doing Digital makeup (dMFX) For TNT’s Falling Skies. It has been used on film, television, multimedia, and theme park attractions ever since to create stunning images for your entertainment.
+
+Production use in:
+==================
+Falling Skies
+The Strain
+The Librarians Hemlock Grove
+Dumb and Dumber Too American Gods
+and more...
+
+
+WatchDog is a Python script that needs to be placed in a specific computer system directory (details in the install ReadMe file), followed with a few simple terminal commands. It will be necessary for you to have administrative access to properly install the files.
+Currently WatchDog is only supported on Macintosh platforms of any size, including laptops. It requires a full AE install from Creative Cloud, but it is capable of “headless” rendering — which avoids using precious Adobe licenses up too quickly.
+
+To build a headless rendering node, create a blank text file named “ae_render_only_node.txt” installed in the home directory so that the render engines launch without issue, as long as all plug-ins are also installed. This render node designation file is a standard Adobe thing, not something directly required by WatchDog. It will force any installed AE license to run as a render engine, so do NOT install this in a machine you will be using with an active Adobe AE license.
+
+Cost
+====
+WatchDog is Free Shareware, and set up on GitHub for open source development within the Adobe After Effects community of developers. 
+
+WatchDog is published as-is, and has no support, outside of somehow bribing the original developer with candies, endless money, or a dedicated freeway lane! Seriously. Open source. Free. As-is. Hoping for your contribution, or at least its use.
 
 INSTALLATION
 ============
