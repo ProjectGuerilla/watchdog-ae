@@ -3,7 +3,8 @@
 
 """
 This code is copyright 2012 Tom David Stratton
-Minor code mods by Johnathan Banta for quick deployment to default OSX installs 2016. Renamed to WatchDog per previous standalone deployments to avoid Social Network confusion issues
+Minor code mods by Johnathan Banta for quick deployment to default OSX installs 2016. Renamed to WatchDog per previous standalone 
+deployments to avoid Social Network confusion issues (the name used to be grinder - go figure)
 It is available under dual license:
 For anyone who want to use it, it is available under GPLv3 (http://www.gnu.org/licenses/gpl.html) but you must adhere to the 
 terms of the license and release all derivative software under the same license.
@@ -11,11 +12,10 @@ terms of the license and release all derivative software under the same license.
 For anyone who wants to close source or commercialize this software please contact me to discuss appropriate licensing fees
 or revenue sharing.
 
-This software is provided without warranty, it doesn nothing except delete all your data and install viruses in your render farm.
-After that, your workers gerenally contract fatal diseases. You have been warned so don't come crying to me if it breaks. Fix
-it yourself and send me a pull request.
+This software is provided without warranty, you have been warned so don't come crying to me if it breaks. However, it has been
+used in many commerical productions without incident, so there's reason for hope Fix it yourself and send me a pull request.
 
-Clearly, you have to change the WATCHFOLDER path on line 24 - and no, if you can't figure that out I'm not going to help you.
+Clearly, you have to change the WATCHFOLDER path on line 30 - and no, if you can't figure that out I'm not going to help you.
 """
 __author__ = 'tom@tomstatton. net'
 
@@ -27,10 +27,10 @@ __author__ = 'tom@tomstatton. net'
 WATCHFOLDER = '/Users/tom/Desktop/watch/'
 NUMBER_ENGINES = 4
 # change the line below to control which version of After Effects you want to use. You can create multiple watchdog Instances by changing the name of the app
-AERENDER = '/Applications/Adobe After Effects CC 2014/aerender'
+AERENDER = '/Applications/Adobe After Effects CC 2018/aerender'
 STRFTIMEFORLOGS = '_%m%d%y_%H_%M.txt'
 WAIT_TIME = 60 # seconds
-__version__ = '0.7b'
+__version__ = '0.8b'
 
 import subprocess
 import datetime
